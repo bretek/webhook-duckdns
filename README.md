@@ -8,6 +8,13 @@ A webhook to use [Duck DNS](https://www.duckdns.org) as a DNS01 ACME Issuer for 
 
 # Configuration
 
-yaml```
+Place your base64 encoded DuckDNS token in a kubernetes secret, with name "duckdns-token".
 
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: duckdns-token
+data:
+  token: $DUCKDNS_TOKEN
 ```
