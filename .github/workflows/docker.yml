@@ -1,0 +1,19 @@
+name: docker_build_publish
+
+on:
+  release:
+    types: ["published"]
+  push:
+    branches: ["master"]
+
+jobs:
+  docker-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build and publish docker image
+        uses: macbre/push-to-ghcr@v16
+        with:
+          image_name: ${{ github.repository }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
