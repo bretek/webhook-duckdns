@@ -97,7 +97,7 @@ func (c *duckDNSProviderSolver) CleanUp(ch *v1alpha1.ChallengeRequest) error {
 		return err
 	}
 
-	domain := strings.TrimSuffix(ch.ResolvedZone, ".")
+	domain := GetDomainName(ch.DNSName)
 	url := fmt.Sprintf("https://www.duckdns.org/update?domains=%s&token=%s&txt=&clear=true", domain, *apiKey)
 	c.logger.Debug("Clearing TXT...", "url", url)
 	resp, err := http.Get(url)
