@@ -19,6 +19,7 @@ import (
 
 	"github.com/cert-manager/cert-manager/pkg/acme/webhook/apis/acme/v1alpha1"
 	"github.com/cert-manager/cert-manager/pkg/acme/webhook/cmd"
+	"github.com/cert-manager/cert-manager/pkg/issuer/acme/dns/util"
 )
 
 var GroupName = os.Getenv("GROUP_NAME")
@@ -59,7 +60,7 @@ func (c *duckDNSProviderSolver) Present(ch *v1alpha1.ChallengeRequest) error {
 		return err
 	}
 
-	domain := strings.TrimSuffix(ch.ResolvedFQDN, ".")
+	domain := GetDomainName(ch.DNSName)
 	url := fmt.Sprintf("https://www.duckdns.org/update?domains=%s&token=%s&txt=%s", domain, *apiKey, ch.Key)
 	c.logger.Debug("Updating TXT...", "url", url)
 	resp, err := http.Get(url)
@@ -178,4 +179,20 @@ func loadConfig(cfgJSON *extapi.JSON) (duckDNSProviderConfig, error) {
 	}
 
 	return cfg, nil
+}
+
+const duckDNSSuffix = ".duckdns.org"
+
+func GetDomainName(DNSName string) string {
+	domainName := util.UnFqdn(DNSName) // Remove trailing dot (domain.duckdns.org. -> domain.duckdns.org)
+	domainName = strings.TrimSuffix(domainName, duckDNSSuffix)
+
+	split := strings.Split(domainName, ".")
+
+	// If it's prefix.domain, return domain
+	if len(split) == 2 {
+		return split[1]
+	} else {
+		return domainName
+	}
 }
