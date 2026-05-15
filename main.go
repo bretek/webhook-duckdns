@@ -61,6 +61,7 @@ func (c *duckDNSProviderSolver) Present(ch *v1alpha1.ChallengeRequest) error {
 
 	domain := strings.TrimSuffix(ch.ResolvedZone, ".")
 	url := fmt.Sprintf("https://www.duckdns.org/update?domains=%s&token=%s&txt=%s", domain, *apiKey, ch.Key)
+	c.logger.Debug("Updating TXT...", "url", url)
 	resp, err := http.Get(url)
 	if err != nil {
 		return err
@@ -97,6 +98,7 @@ func (c *duckDNSProviderSolver) CleanUp(ch *v1alpha1.ChallengeRequest) error {
 
 	domain := strings.TrimSuffix(ch.ResolvedZone, ".")
 	url := fmt.Sprintf("https://www.duckdns.org/update?domains=%s&token=%s&txt=&clear=true", domain, *apiKey)
+	c.logger.Debug("Clearing TXT...", "url", url)
 	resp, err := http.Get(url)
 	if err != nil {
 		return err
@@ -121,7 +123,7 @@ func (c *duckDNSProviderSolver) CleanUp(ch *v1alpha1.ChallengeRequest) error {
 }
 
 func (c *duckDNSProviderSolver) Initialize(kubeClientConfig *rest.Config, stopCh <-chan struct{}) error {
-	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: getLogLevelFromEnv()}))
 	cl, err := kubernetes.NewForConfig(kubeClientConfig)
 	if err != nil {
 		return err
@@ -147,6 +149,23 @@ func (c *duckDNSProviderSolver) getApiKey(namespace, secretName, key string) (*s
 	apiKey := strings.TrimSpace(string(apiKeyBinary))
 	c.logger.Info("Secret loaded", "secret name", secret.Name)
 	return &apiKey, nil
+}
+
+func getLogLevelFromEnv() slog.Level {
+	levelStr := os.Getenv("LOG_LEVEL")
+	switch strings.ToLower(levelStr) {
+	case "debug":
+		return slog.LevelDebug
+	case "info":
+		return slog.LevelInfo
+	case "warn":
+		return slog.LevelWarn
+	case "error":
+		return slog.LevelError
+	default:
+		return slog.LevelWarn
+
+	}
 }
 
 func loadConfig(cfgJSON *extapi.JSON) (duckDNSProviderConfig, error) {
