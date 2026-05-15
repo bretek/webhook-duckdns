@@ -59,7 +59,7 @@ func (c *duckDNSProviderSolver) Present(ch *v1alpha1.ChallengeRequest) error {
 		return err
 	}
 
-	domain := strings.TrimSuffix(ch.ResolvedZone, ".")
+	domain := strings.TrimSuffix(ch.ResolvedFQDN, ".")
 	url := fmt.Sprintf("https://www.duckdns.org/update?domains=%s&token=%s&txt=%s", domain, *apiKey, ch.Key)
 	c.logger.Debug("Updating TXT...", "url", url)
 	resp, err := http.Get(url)
