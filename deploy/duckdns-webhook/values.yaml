@@ -26,6 +26,8 @@ image:
 nameOverride: ""
 fullnameOverride: ""
 
+logLevel: "warn"
+
 service:
   type: ClusterIP
   port: 443
