@@ -1,67 +1,13 @@
 apiVersion: v1
 entries:
   duckdns-webhook:
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2026-05-15T21:53:59.616724988Z"
-    description: A Helm chart for duckdns-webhook
-    digest: 957aea33024147636a601976e21a2c12deabe5519d6cf9406644cc45cde2ac0c
-    name: duckdns-webhook
-    urls:
-    - https://github.com/bretek/webhook-duckdns/releases/download/duckdns-webhook-1.0.6/duckdns-webhook-1.0.6.tgz
-    version: 1.0.6
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2026-05-15T21:16:06.346666015Z"
-    description: A Helm chart for duckdns-webhook
-    digest: 432f92d0dd234b1cf9ff2d17637ee0d67f2ae8324f6946d1bff01ddebcbe817f
-    name: duckdns-webhook
-    urls:
-    - https://github.com/bretek/webhook-duckdns/releases/download/duckdns-webhook-1.0.5/duckdns-webhook-1.0.5.tgz
-    version: 1.0.5
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2026-05-15T20:49:29.672980024Z"
-    description: A Helm chart for duckdns-webhook
-    digest: 127d4857fd8a23d8e548989272a639a6eed9a22858be71e4efde8e245e4d5d66
-    name: duckdns-webhook
-    urls:
-    - https://github.com/bretek/webhook-duckdns/releases/download/duckdns-webhook-1.0.4/duckdns-webhook-1.0.4.tgz
-    version: 1.0.4
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2026-05-15T20:22:16.649858604Z"
-    description: A Helm chart for duckdns-webhook
-    digest: 34a3ead95afca8c0ef9d92a1ff09c1a3f756816eed8ed799280d24855b3b9ad5
-    name: duckdns-webhook
-    urls:
-    - https://github.com/bretek/webhook-duckdns/releases/download/duckdns-webhook-1.0.3/duckdns-webhook-1.0.3.tgz
-    version: 1.0.3
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2026-05-15T20:13:53.052202605Z"
-    description: A Helm chart for duckdns-webhook
-    digest: 65a077fdc495c22b6b5038da7ba59a31f6ffc21200d7586639f09dc1fbeafae7
-    name: duckdns-webhook
-    urls:
-    - https://github.com/bretek/webhook-duckdns/releases/download/duckdns-webhook-1.0.2/duckdns-webhook-1.0.2.tgz
-    version: 1.0.2
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2026-05-13T22:53:15.734537707Z"
-    description: A Helm chart for duckdns-webhook
-    digest: 4dc5170601a1688188cc1842403675d276ffb0cc20348cc8ba28b89a40356417
-    name: duckdns-webhook
-    urls:
-    - https://github.com/bretek/webhook-duckdns/releases/download/duckdns-webhook-1.0.1/duckdns-webhook-1.0.1.tgz
-    version: 1.0.1
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2026-05-13T22:23:39.669041367Z"
-    description: A Helm chart for duckdns-webhook
-    digest: 1d04949ddae6c1cd17d3924c82cad72db8e5b639b0dfeb071936df16a08a9d05
-    name: duckdns-webhook
-    urls:
-    - https://github.com/bretek/webhook-duckdns/releases/download/duckdns-webhook-1.0.0/duckdns-webhook-1.0.0.tgz
-    version: 1.0.0
+    - apiVersion: v1
+      appVersion: "1.0"
+      created: "2026-05-22T19:31:15.734537707Z"
+      description: A Helm chart for duckdns-webhook
+      digest: 010ab4ffffb7d946e46b5368142b6d40a512861720be6c5151c1af0b2950558c
+      name: duckdns-webhook
+      urls:
+        - https://github.com/bretek/webhook-duckdns/releases/download/duckdns-webhook-1.0.0/duckdns-webhook-1.0.0.tgz
+      version: 1.0.0
 generated: "2026-05-15T21:53:59.616758418Z"
